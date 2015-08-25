@@ -52,9 +52,8 @@ class Ppe < Sinatra::Base
 
     np = mysql.xquery('SELECT content FROM np WHERE hash=?', hash).first
 
-    erb :np, :layout => :base, :locals => {
-      :content => np["content"],
-    }
+    content_type 'text/plain'
+    np['content']
   end
 
   run! if app_file == $0
